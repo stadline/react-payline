@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "author": "alex-pex",
+  "keywords": ["react", "payline", "adapter"],
   "repository": "github:stadline/react-payline",
   "files": ["**/*.js", "**/*.js.map", "**/*.d.ts"],
   "main": "index.js",
