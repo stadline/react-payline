@@ -36,6 +36,7 @@ type PropsType = {
   token: string;
   template?: string;
   embeddedRedirectionAllowed?: boolean;
+  partnerReturnUrl?: string;
 
   onWillInit?: WillInitHandler;
   onWillShow?: WillShowHandler;
@@ -50,6 +51,7 @@ const PaylineWidget: React.ComponentType<PropsType> = ({
   token,
   template = 'column',
   embeddedRedirectionAllowed = false,
+  partnerReturnUrl,
   onWillInit,
   onWillShow,
   onFinalStateHasBeenReached,
@@ -101,6 +103,7 @@ const PaylineWidget: React.ComponentType<PropsType> = ({
       data-token={token}
       data-template={template}
       data-embeddedredirectionallowed={embeddedRedirectionAllowed}
+      data-partnerreturnurl={partnerReturnUrl}
       data-event-willinit="Payline_onWillInit"
       data-event-willshow="Payline_onWillShow"
       data-event-finalstatehasbeenreached="Payline_onFinalStateHasBeenReached"
