@@ -96,6 +96,7 @@ const PaylineWidget: React.ComponentType<PropsType> = ({
   const payline = usePayline();
   useEffect(() => {
     payline.reset();
+    return () => payline.hide()
   }, [payline]);
 
   return (
