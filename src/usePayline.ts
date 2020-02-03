@@ -1,6 +1,3 @@
-import { useContext } from 'react';
-import { PaylineContext } from './PaylineProvider';
-
 type PaylineApi = {
   endToken: (additionnalData: any, callback: Function, spinner: any, handledByMerchant: boolean) => void;
   finalizeShortCut: Function;
@@ -23,11 +20,17 @@ type PaylineApi = {
   updateWebpaymentData: (token: string, data: any) => void;
 };
 
-const usePayline = () => {
-  const payline = useContext(PaylineContext);
-  if (!payline) throw new Error('PaylineProvider is not rendered within the component tree.');
+type WindowType = {
+  Payline?: {
+    Api: PaylineApi;
+  }
+}
 
-  return (window as any).Payline.Api as PaylineApi;
+const usePayline = () => {
+  const Payline = (window as WindowType).Payline;
+  if (!Payline) throw new Error('PaylineProvider is not rendered within the component tree.');
+
+  return Payline.Api;
 };
 
 export default usePayline;
