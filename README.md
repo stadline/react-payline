@@ -15,7 +15,7 @@ And if you're a TypeScript user: this package is written in TypeScript and bundl
 Integrates the [Payline widget](https://payline.atlassian.net/wiki/x/lB2eB)
 
 ```jsx
-import { PaylineWidget } from "react-payline";
+import { PaylineWidget } from 'react-payline';
 
 function Payment(props) {
   return (
@@ -24,7 +24,7 @@ function Payment(props) {
       template="column"
       embeddedRedirectionAllowed={false}
       onFinalStateHasBeenReached={({ state }) => {
-        if (state === "PAYMENT_SUCCESS") {
+        if (state === 'PAYMENT_SUCCESS') {
           props.onSuccess();
           return true;
         }
@@ -43,9 +43,9 @@ If you need more info, please refer to the documentation (FR): https://payline.a
 Integrates the [Payline API](https://payline.atlassian.net/wiki/x/EIA3Tw)
 
 ```jsx
-import { useEffect } from "react";
-import { usePayline } from "react-payline";
-import Payment from "./Payment";
+import { useEffect } from 'react';
+import { usePayline } from 'react-payline';
+import Payment from './Payment';
 
 function PaymentWrapper(props) {
   const paylineApi = usePayline();
@@ -57,7 +57,7 @@ function PaymentWrapper(props) {
     }
   }, [show]);
 
-  return <Payment onSuccess={() => console.log("celebrate!")} />;
+  return <Payment onSuccess={() => console.log('celebrate!')} />;
 }
 ```
 
@@ -74,24 +74,49 @@ The package depends on `React >16.8` because it uses hooks and context. There ar
 Wrap your application with the PaylineProvider component. If you omit the `production` prop, you will use the "homologation" environment.
 
 ```jsx
-import { PaylineProvider } from "react-payline";
+import { PaylineProvider } from 'react-payline';
 
 ReactDOM.render(
   <PaylineProvider production>
     <App />
   </PaylineProvider>,
-  document.getElementById("#root")
+  document.getElementById('#root')
 );
 ```
-
-#### Using withPayline
 
 You can also use a HOC to wrap your application. The first argument of the function is the production flag.
 
 ```jsx
-import { withPayline } from "react-payline";
+import { withPayline } from 'react-payline';
 
 const EnhancedApp = withPayline(true)(App);
 
-ReactDOM.render(<EnhancedApp />, document.getElementById("#root"));
+ReactDOM.render(<EnhancedApp />, document.getElementById('#root'));
+```
+
+Under the hood it uses `react-helmet` to add the script and stylesheet to the `document.head`.
+
+#### Using PaylineHead
+
+If you're using SSR (with [Next.JS](https://nextjs.org/) or [Remix](https://remix.run/) for example) you probably want to handle `document.head` yourself.
+Use PaylineHead component to render only the JS and CSS needed.
+
+```jsx
+import { PaylineProvider } from 'react-payline';
+
+export default class MyDocument extends Document {
+  render() {
+    return (
+      <Html lang="en">
+        <Head>
+          <PaylineHead production />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
 ```

@@ -68,15 +68,17 @@ const PaylineWidget: React.ComponentType<PropsType> = ({
     onDidShowState,
     onWillDisplayMessage,
     onWillRemoveMessage,
-    onBeforePayment
+    onBeforePayment,
   };
   const eventHandlersRef = useRef(eventHandlers);
   eventHandlersRef.current = eventHandlers;
 
-  useEffect(() => {
-    const propNames = Object.keys(eventHandlersRef.current) as Array<keyof typeof eventHandlers>;
+  type EventHandlerNames = Array<keyof typeof eventHandlers>;
 
-    propNames.forEach(propName => {
+  useEffect(() => {
+    const propNames = Object.keys(eventHandlersRef.current) as EventHandlerNames;
+
+    propNames.forEach((propName) => {
       (window as any)[`Payline_${propName}`] = (...args: any) => {
         const eventHandler = eventHandlersRef.current[propName] as Function | undefined;
         if (eventHandler) {
@@ -87,7 +89,7 @@ const PaylineWidget: React.ComponentType<PropsType> = ({
     });
 
     return () => {
-      propNames.forEach(propName => {
+      propNames.forEach((propName) => {
         delete (window as any)[`Payline_${propName}`];
       });
     };
@@ -95,8 +97,10 @@ const PaylineWidget: React.ComponentType<PropsType> = ({
 
   const payline = usePayline();
   useEffect(() => {
-    payline.reset();
-    return () => payline.hide()
+    if (payline) {
+      payline.reset();
+      return () => payline.hide();
+    }
   }, [payline]);
 
   return (

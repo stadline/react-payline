@@ -27,6 +27,7 @@ type WindowType = {
 }
 
 const usePayline = () => {
+  if (typeof window === 'undefined') return;
   const Payline = (window as WindowType).Payline;
   if (!Payline) throw new Error('PaylineProvider is not rendered within the component tree.');
 
