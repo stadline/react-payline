@@ -2,17 +2,17 @@
 
 _This is an unofficial repository_
 
-This package provides a small layer between [Payline](https://support.payline.com/hc/fr/articles/360017961193-Int%C3%A9gration-Payline) and your React application. It removes the need of including js and css files, the use of `window.Payline` to access the API and the burden of declaring/removing global functions to use the event handlers.
+This package provides a small layer between [Payline](https://docs.payline.com/pages/viewpage.action?pageId=747145714) and your React application. It removes the need of including js and css files, the use of `window.Payline` to access the API and the burden of declaring/removing global functions to use the event handlers.
 
 And if you're a TypeScript user: this package is written in TypeScript and bundles type definitions 😘.
 
 ## How to use
 
-**Required:** before using Payline you will need to put the PaylineProvider somewhere high in your component tree. Follow [this guide](#Setup)
+**Required:** before using Payline you will need to put the PaylineProvider somewhere high in your component tree. Follow [this guide](#setup)
 
 ### PaylineWidget
 
-Integrates the [Payline widget](https://payline.atlassian.net/wiki/x/lB2eB)
+Integrates the [Payline widget](https://docs.payline.com/pages/viewpage.action?pageId=747145714)
 
 ```jsx
 import { PaylineWidget } from 'react-payline';
@@ -34,13 +34,13 @@ function Payment(props) {
 }
 ```
 
-The parameter props follow the documentation, except they are camelCased and don't include the `data-` prefix. You can also use any [callback](https://payline.atlassian.net/wiki/x/EQA3B) but the naming is also changed, for example: `data-event-didshowstate` will be `onDidShowState`.
+The parameter props follow the documentation, except they are camelCased and don't include the `data-` prefix. You can also use any [callback](https://docs.payline.com/display/DT/PW+-+Personnalisation+du+widget+%3A+Fonction+CallBack) but the naming is also changed, for example: `data-event-didshowstate` will be `onDidShowState`.
 
 If you need more info, please refer to the documentation (FR): https://payline.atlassian.net/wiki/x/lB2eB
 
 ### Payline API
 
-Integrates the [Payline API](https://payline.atlassian.net/wiki/x/EIA3Tw)
+Integrates the [Payline API](https://docs.payline.com/display/DT/API+JavaScript)
 
 ```jsx
 import { useEffect } from 'react';
@@ -63,7 +63,7 @@ function PaymentWrapper(props) {
 
 Every documented functions is available using the hook.
 
-If you need more info, please refer to the documentation (FR): https://payline.atlassian.net/wiki/x/EIA3Tw
+If you need more info, please refer to the documentation (FR): https://docs.payline.com/display/DT/API+JavaScript
 
 ## Setup
 
