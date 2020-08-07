@@ -2,7 +2,7 @@
 
 _This is an unofficial repository_
 
-This package provides a small layer between [Payline](https://docs.payline.com/pages/viewpage.action?pageId=747145714) and your React application. It removes the need of including js and css files, the use of `window.Payline` to access the API and the burden of declaring/removing global functions to use the event handlers.
+This package provides a small layer between [Payline](https://docs.payline.com/pages/viewpage.action?pageId=747147012) and your React application. It removes the need of including js and css files, the use of `window.Payline` to access the API and the burden of declaring/removing global functions to use the event handlers.
 
 And if you're a TypeScript user: this package is written in TypeScript and bundles type definitions 😘.
 
@@ -36,7 +36,7 @@ function Payment(props) {
 
 The parameter props follow the documentation, except they are camelCased and don't include the `data-` prefix. You can also use any [callback](https://docs.payline.com/display/DT/PW+-+Personnalisation+du+widget+%3A+Fonction+CallBack) but the naming is also changed, for example: `data-event-didshowstate` will be `onDidShowState`.
 
-If you need more info, please refer to the documentation (FR): https://payline.atlassian.net/wiki/x/lB2eB
+If you need more info, please refer to the documentation (FR): https://docs.payline.com/pages/viewpage.action?pageId=747145714
 
 ### Payline API
 
