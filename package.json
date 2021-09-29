@@ -16,12 +16,8 @@
   ],
   "main": "index.js",
   "types": "index.d.ts",
-  "dependencies": {
-    "react-helmet": "^5.2.1"
-  },
   "devDependencies": {
     "@types/react": "^16.9.19",
-    "@types/react-helmet": "^5.0.15",
     "react": "^16.12.0",
     "typescript": "^3.7.5"
   },

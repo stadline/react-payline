@@ -20,18 +20,18 @@ type PaylineApi = {
   updateWebpaymentData: (token: string, data: any) => void;
 };
 
-type WindowType = {
-  Payline?: {
-    Api: PaylineApi;
+declare global {
+  interface Window {
+    Payline?: { Api: PaylineApi };
   }
 }
 
 const usePayline = () => {
-  if (typeof window === 'undefined') return;
-  const Payline = (window as WindowType).Payline;
-  if (!Payline) throw new Error('PaylineProvider is not rendered within the component tree.');
+  if (typeof window === 'undefined') return undefined;
 
-  return Payline.Api;
+  if (!window.Payline)
+    throw new Error('window.Payline is unavailable. Check if PaylineProvider is rendered within the component tree.');
+  return window.Payline.Api;
 };
 
 export default usePayline;
