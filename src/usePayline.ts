@@ -1,22 +1,31 @@
+// See https://docs.payline.com/display/DT/API+JavaScript for full documentation of Payline API
 type PaylineApi = {
-  endToken: (additionnalData: any, callback: Function, spinner: any, handledByMerchant: boolean) => void;
-  finalizeShortCut: Function;
-  getBuyerShortCut: Function;
-  getCancelAndReturnUrls: Function;
-  getContextInfo: (key: string) => any;
-  getCssIframeWhiteList: Function;
-  getFragmentedPaymentInfo: Function;
-  getLanguage: Function;
-  getOrderInfos: Function;
-  getRecurringDetails: Function;
-  getToken: Function;
-  getTokenStatus: (token: string, callback: (tokenStatus: 'ALIVE' | 'EXPIRED' | 'UNKNOWN') => void) => void;
-  hide: Function;
-  init: Function;
-  isSandBox: Function;
+  endToken: (
+    additionnalData: any,
+    callback: () => void,
+    spinner: any,
+    handledByMerchant: boolean
+  ) => void;
+  finalizeShortCut: () => void;
+  getBuyerShortCut: () => Record<string, unknown>;
+  getCancelAndReturnUrls: () => { returnUrl: string; cancelUrl: string };
+  getContextInfo: (key: string) => Record<string, unknown>;
+  getCssIframeWhiteList: () => string[];
+  getFragmentedPaymentInfo: () => Record<string, unknown>;
+  getLanguage: () => string;
+  getOrderInfos: () => Record<string, unknown>;
+  getRecurringDetails: () => Record<string, unknown>;
+  getToken: () => string;
+  getTokenStatus: (
+    token: string,
+    callback: (tokenStatus: 'ALIVE' | 'EXPIRED' | 'UNKNOWN') => void
+  ) => void;
+  hide: () => void;
+  init: () => void;
+  isSandBox: () => boolean;
   reset: (token?: string, template?: string) => void;
-  show: Function;
-  toggle: Function;
+  show: () => void;
+  toggle: () => void;
   updateWebpaymentData: (token: string, data: any) => void;
 };
 
