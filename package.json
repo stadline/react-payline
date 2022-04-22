@@ -1,6 +1,6 @@
 {
   "name": "react-payline",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "license": "MIT",
   "author": "alex-pex",
   "keywords": [
@@ -10,22 +10,20 @@
   ],
   "repository": "github:stadline/react-payline",
   "files": [
-    "**/*.js",
-    "**/*.js.map",
-    "**/*.d.ts"
+    "dist"
   ],
-  "main": "index.js",
-  "types": "index.d.ts",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "devDependencies": {
-    "@types/react": "^16.9.19",
-    "react": "^16.12.0",
-    "typescript": "^3.7.5"
+    "@types/react": "^18.0.15",
+    "react": "^18.2.0",
+    "typescript": "^4.7.4"
   },
   "peerDependencies": {
-    "react": ">16.8"
+    "react": ">=18.0"
   },
   "scripts": {
-    "prepublishOnly": "tsc",
-    "postpublish": "rm index.js index.js.map index.d.ts **/*.js **/*.js.map **/*.d.ts"
+    "prepublishOnly": "tsc"
   }
 }

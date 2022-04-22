@@ -1,5 +1,5 @@
-export { default as PaylineProvider } from './src/PaylineProvider';
-export { default as withPayline } from './src/withPayline';
-export { default as usePayline } from './src/usePayline';
+export { default as PaylineProvider } from './src/PaylineProvider.js';
+export { default as withPayline } from './src/withPayline.js';
+export { default as usePayline } from './src/usePayline.js';
 
-export { default as PaylineWidget } from './src/PaylineWidget';
+export { default as PaylineWidget } from './src/PaylineWidget.js';

@@ -15,8 +15,8 @@ type PaylineApi = {
   init: Function;
   isSandBox: Function;
   reset: (token?: string, template?: string) => void;
-  show: Function;
-  toggle: Function;
+  show: () => void;
+  toggle: () => void;
   updateWebpaymentData: (token: string, data: any) => void;
 };
 

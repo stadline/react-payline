@@ -1,7 +1,8 @@
-import React, { useInsertionEffect, useState } from 'react';
+import React, { useInsertionEffect, useState, ReactNode } from 'react';
 
 type PropsType = {
   production?: boolean;
+  children?: ReactNode;
 };
 
 const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, children }) => {
