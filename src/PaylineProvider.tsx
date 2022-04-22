@@ -5,7 +5,7 @@ type PropsType = {
 };
 
 export const PaylineHead: React.ComponentType<PropsType> = ({ production = false }) => {
-  const baseUrl = production ? 'https://payment.payline.com' : 'https://homologation-payment.payline.com';
+  const baseUrl = production ? 'https://payment.cdn.payline.com/cdn' : 'https://homologation-payment.cdn.payline.com/cdn';
 
   return (
     <>
@@ -16,7 +16,7 @@ export const PaylineHead: React.ComponentType<PropsType> = ({ production = false
 };
 
 const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, children }) => {
-  const baseUrl = production ? 'https://payment.payline.com' : 'https://homologation-payment.payline.com';
+  const baseUrl = production ? 'https://payment.cdn.payline.com/cdn' : 'https://homologation-payment.cdn.payline.com/cdn';
 
   // add script
   const scriptUrl = `${baseUrl}/scripts/widget-min.js`;
