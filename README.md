@@ -95,28 +95,3 @@ ReactDOM.render(<EnhancedApp />, document.getElementById('#root'));
 ```
 
 Under the hood it uses `react-helmet` to add the script and stylesheet to the `document.head`.
-
-#### Using PaylineHead
-
-If you're using SSR (with [Next.JS](https://nextjs.org/) or [Remix](https://remix.run/) for example) you probably want to handle `document.head` yourself.
-Use PaylineHead component to render only the JS and CSS needed.
-
-```jsx
-import { PaylineProvider } from 'react-payline';
-
-export default class MyDocument extends Document {
-  render() {
-    return (
-      <Html lang="en">
-        <Head>
-          <PaylineHead production />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
-```

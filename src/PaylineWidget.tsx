@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import usePayline from './usePayline';
 
 type StateType =
   | 'ACTIVE_WAITING'
@@ -95,16 +94,16 @@ const PaylineWidget: React.ComponentType<PropsType> = ({
     };
   }, []);
 
-  const payline = usePayline();
   useEffect(() => {
-    if (payline) {
-      payline.reset();
-      return () => payline.hide();
+    if (token) {
+      window.Payline?.Api.init(token, template); // https://support.payline.com/hc/fr/articles/360018691239-Comment-r%C3%A9initialiser-le-widget-payline-
+      return () => window.Payline?.Api.hide();
     }
-  }, [payline]);
+  }, [token]);
 
   return (
     <div
+      data-auto-init={!!token}
       data-token={token}
       data-template={template}
       data-embeddedredirectionallowed={embeddedRedirectionAllowed}

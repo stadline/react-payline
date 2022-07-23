@@ -1,27 +1,20 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useInsertionEffect, useState } from 'react';
 
 type PropsType = {
   production?: boolean;
 };
 
-export const PaylineHead: React.ComponentType<PropsType> = ({ production = false }) => {
-  const baseUrl = production ? 'https://payment.cdn.payline.com/cdn' : 'https://homologation-payment.cdn.payline.com/cdn';
-
-  return (
-    <>
-      <script src={`${baseUrl}/scripts/widget-min.js`} />
-      <link href={`${baseUrl}/styles/widget-min.css`} rel="stylesheet" />
-    </>
-  );
-};
-
 const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, children }) => {
+  let initialState = false;
+  if (typeof window !== 'undefined') {
+      initialState = window.Payline !== undefined;
+  }
   const baseUrl = production ? 'https://payment.cdn.payline.com/cdn' : 'https://homologation-payment.cdn.payline.com/cdn';
 
   // add script
   const scriptUrl = `${baseUrl}/scripts/widget-min.js`;
-  const [, setIsLoaded] = useState(window.Payline !== undefined);
-  useLayoutEffect(() => {
+  const [, setIsLoaded] = useState(initialState);
+  useInsertionEffect(() => {
     let script: HTMLScriptElement | null = document.querySelector(`script[src="${scriptUrl}"]`);
     if (!script) {
       script = document.createElement('script');
@@ -39,7 +32,7 @@ const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, c
 
   // add stylesheet
   const stylesheetUrl = `${baseUrl}/styles/widget-min.css`;
-  useLayoutEffect(() => {
+  useInsertionEffect(() => {
     let stylesheet: HTMLLinkElement | null = document.querySelector(`link[href="${stylesheetUrl}"]`);
     if (!stylesheet) {
       stylesheet = document.createElement('link');
