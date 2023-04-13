@@ -36,7 +36,7 @@ function Payment(props) {
 
 The parameter props follow the documentation, except they are camelCased and don't include the `data-` prefix. You can also use any [callback](https://docs.payline.com/display/DT/PW+-+Personnalisation+du+widget+%3A+Fonction+CallBack) but the naming is also changed, for example: `data-event-didshowstate` will be `onDidShowState`.
 
-If you need more info, please refer to the documentation (FR): https://docs.payline.com/pages/viewpage.action?pageId=747145714
+If you need more info, please refer to the documentation (FR): <https://docs.payline.com/pages/viewpage.action?pageId=747145714>
 
 ### Payline API
 
@@ -63,13 +63,13 @@ function PaymentWrapper(props) {
 
 Every documented functions is available using the hook.
 
-If you need more info, please refer to the documentation (FR): https://docs.payline.com/display/DT/API+JavaScript
+If you need more info, please refer to the documentation (FR): <https://docs.payline.com/display/DT/API+JavaScript>
 
 ## Setup
 
 The package depends on `React >16.8` because it uses hooks and context. There are two ways you can embed the Payline lib
 
-#### Using PaylineProvider
+### Using PaylineProvider
 
 Wrap your application with the PaylineProvider component. If you omit the `production` prop, you will use the "homologation" environment.
 
@@ -96,7 +96,7 @@ ReactDOM.render(<EnhancedApp />, document.getElementById('#root'));
 
 Under the hood it uses `react-helmet` to add the script and stylesheet to the `document.head`.
 
-#### Using PaylineHead
+### Using PaylineHead
 
 If you're using SSR (with [Next.JS](https://nextjs.org/) or [Remix](https://remix.run/) for example) you probably want to handle `document.head` yourself.
 Use PaylineHead component to render only the JS and CSS needed.
