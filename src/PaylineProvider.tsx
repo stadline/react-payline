@@ -4,22 +4,22 @@ type PropsType = {
   production?: boolean;
 };
 
-export const PaylineHead: React.ComponentType<PropsType> = ({ production = false }) => {
-  const baseUrl = production ? 'https://payment.payline.com' : 'https://homologation-payment.payline.com';
+const getBaseUrl = (production: boolean) => production ? 'https://payment.payline.com' : 'https://homologation-payment.payline.com'
+const getScriptUrl = (production: boolean) => `${getBaseUrl(production)}/scripts/widget-min.js`
+const getStylesheetUrl = (production: boolean) => `${getBaseUrl(production)}/scripts/widget-min.css`
 
+export const PaylineHead: React.ComponentType<PropsType> = ({ production = false }) => {
   return (
     <>
-      <script src={`${baseUrl}/scripts/widget-min.js`} />
-      <link href={`${baseUrl}/styles/widget-min.css`} rel="stylesheet" />
+      <script src={getScriptUrl(production)} />
+      <link href={getStylesheetUrl(production)} rel="stylesheet" />
     </>
   );
 };
 
 const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, children }) => {
-  const baseUrl = production ? 'https://payment.payline.com' : 'https://homologation-payment.payline.com';
-
   // add script
-  const scriptUrl = `${baseUrl}/scripts/widget-min.js`;
+  const scriptUrl = getScriptUrl(production);
   const [, setIsLoaded] = useState(window.Payline !== undefined);
   useLayoutEffect(() => {
     let script: HTMLScriptElement | null = document.querySelector(`script[src="${scriptUrl}"]`);
@@ -38,7 +38,7 @@ const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, c
   }, [scriptUrl]);
 
   // add stylesheet
-  const stylesheetUrl = `${baseUrl}/styles/widget-min.css`;
+  const stylesheetUrl = getStylesheetUrl(production);
   useLayoutEffect(() => {
     let stylesheet: HTMLLinkElement | null = document.querySelector(`link[href="${stylesheetUrl}"]`);
     if (!stylesheet) {
