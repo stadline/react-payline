@@ -33,7 +33,10 @@ const PaylineProvider = ({ production = false, children }: PropsType) => {
 
     script.addEventListener('load', onLoad, false);
     return () => {
-      if (script) script.removeEventListener('load', onLoad, false);
+      if (script) {
+        script.removeEventListener('load', onLoad, false);
+        document.head.removeChild(script)
+      }
     };
   }, [scriptUrl]);
 
@@ -46,6 +49,10 @@ const PaylineProvider = ({ production = false, children }: PropsType) => {
       stylesheet.href = stylesheetUrl;
       stylesheet.rel = 'stylesheet';
       document.head.appendChild(stylesheet);
+    }
+
+    return () => {
+      if (stylesheet) document.head.removeChild(stylesheet)
     }
   }, [stylesheetUrl]);
 
