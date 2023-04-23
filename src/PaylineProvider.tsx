@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, useLayoutEffect, useState } from 'react';
+import PaylineContext from './PaylineContext';
 
 type PropsType = PropsWithChildren<{
   production?: boolean;
@@ -20,7 +21,7 @@ export const PaylineHead = ({ production = false }: PropsType) => {
 const PaylineProvider = ({ production = false, children }: PropsType) => {
   // add script
   const scriptUrl = getScriptUrl(production);
-  const [, setIsLoaded] = useState(window.Payline !== undefined);
+  const [isLoaded, setIsLoaded] = useState(window.Payline !== undefined);
   useLayoutEffect(() => {
     let script = document.querySelector<HTMLScriptElement>(`script[src="${scriptUrl}"]`);
     if (!script) {
@@ -57,7 +58,7 @@ const PaylineProvider = ({ production = false, children }: PropsType) => {
   }, [stylesheetUrl]);
 
   // render children
-  return <>{children}</>;
+  return <PaylineContext.Provider value={{isLoaded}}>{children}</PaylineContext.Provider>;
 };
 
 export default PaylineProvider;
