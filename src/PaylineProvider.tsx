@@ -1,4 +1,5 @@
 import React, { ReactNode, useLayoutEffect, useState } from 'react';
+import PaylineContext from './PaylineContext';
 
 const getBaseUrl = (production: boolean) =>
   production ? 'https://payment.cdn.payline.com/cdn' : 'https://homologation-payment.cdn.payline.com/cdn'
@@ -26,7 +27,8 @@ interface PaylineProviderProps {
 function PaylineProvider({ production = false, children }: PaylineProviderProps) {
   // add script
   const scriptUrl = getScriptUrl(production);
-  const [, setIsLoaded] = useState(window.Payline !== undefined);
+  const [isLoaded, setIsLoaded] = useState(window.Payline !== undefined);
+
   useLayoutEffect(() => {
     let script: HTMLScriptElement | null = document.querySelector(`script[src="${scriptUrl}"]`);
     if (!script) {
@@ -56,7 +58,7 @@ function PaylineProvider({ production = false, children }: PaylineProviderProps)
   }, [stylesheetUrl]);
 
   // render children
-  return <>{children}</>;
-}
+  return <PaylineContext.Provider value={{isLoaded}}>{children}</PaylineContext.Provider>;
+};
 
 export default PaylineProvider;
