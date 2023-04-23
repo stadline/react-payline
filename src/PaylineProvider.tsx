@@ -1,7 +1,7 @@
 import React, { ReactNode, useLayoutEffect, useState } from 'react';
 
 const getBaseUrl = (production: boolean) =>
-  production ? 'https://payment.payline.com' : 'https://homologation-payment.payline.com';
+  production ? 'https://payment.cdn.payline.com/cdn' : 'https://homologation-payment.cdn.payline.com/cdn'
 const getScriptUrl = (production: boolean) => `${getBaseUrl(production)}/scripts/widget-min.js`;
 const getStylesheetUrl = (production: boolean) => `${getBaseUrl(production)}/styles/widget-min.css`;
 
