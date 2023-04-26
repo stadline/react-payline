@@ -1,10 +1,10 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { PropsWithChildren, ReactNode, useLayoutEffect, useState } from 'react';
 
-type PropsType = {
+interface PaylineHeadProps {
   production?: boolean;
 };
 
-export const PaylineHead: React.ComponentType<PropsType> = ({ production = false }) => {
+export const PaylineHead = ({ production = false }: PaylineHeadProps) => {
   const baseUrl = production ? 'https://payment.payline.com' : 'https://homologation-payment.payline.com';
 
   return (
@@ -15,14 +15,19 @@ export const PaylineHead: React.ComponentType<PropsType> = ({ production = false
   );
 };
 
-const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, children }) => {
+interface PaylineProviderProps {
+  production?: boolean;
+  children?: ReactNode;
+}
+
+const PaylineProvider = ({ production = false, children }: PaylineProviderProps) => {
   const baseUrl = production ? 'https://payment.payline.com' : 'https://homologation-payment.payline.com';
 
   // add script
   const scriptUrl = `${baseUrl}/scripts/widget-min.js`;
   const [, setIsLoaded] = useState(window.Payline !== undefined);
   useLayoutEffect(() => {
-    let script: HTMLScriptElement | null = document.querySelector(`script[src="${scriptUrl}"]`);
+    let script = document.querySelector<HTMLScriptElement>(`script[src="${scriptUrl}"]`);
     if (!script) {
       script = document.createElement('script');
       script.src = scriptUrl;
@@ -40,7 +45,7 @@ const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, c
   // add stylesheet
   const stylesheetUrl = `${baseUrl}/styles/widget-min.css`;
   useLayoutEffect(() => {
-    let stylesheet: HTMLLinkElement | null = document.querySelector(`link[href="${stylesheetUrl}"]`);
+    let stylesheet = document.querySelector<HTMLLinkElement>(`link[href="${stylesheetUrl}"]`);
     if (!stylesheet) {
       stylesheet = document.createElement('link');
       stylesheet.href = stylesheetUrl;
