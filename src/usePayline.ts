@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import PaylineContext from "./PaylineContext";
+
 // See https://docs.payline.com/display/DT/API+JavaScript for full documentation of Payline API
 type PaylineApi = {
   endToken: (
@@ -37,6 +40,7 @@ declare global {
 
 const usePayline = () => {
   if (typeof window === 'undefined') return undefined;
+  if (!useContext(PaylineContext).isLoaded) return undefined
 
   if (!window.Payline)
     throw new Error('window.Payline is unavailable. Check if PaylineProvider is rendered within the component tree.');
