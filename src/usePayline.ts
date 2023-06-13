@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 // See https://docs.payline.com/display/DT/API+JavaScript for full documentation of Payline API
 type PaylineApi = {
   endToken: (
@@ -31,16 +33,22 @@ type PaylineApi = {
 
 declare global {
   interface Window {
-    Payline?: { Api: PaylineApi };
+    Payline?: { Api: PaylineApi; jQuery: JQuery };
   }
 }
 
 const usePayline = () => {
   if (typeof window === 'undefined') return undefined;
 
-  if (!window.Payline)
-    throw new Error('window.Payline is unavailable. Check if PaylineProvider is rendered within the component tree.');
-  return window.Payline.Api;
+  useEffect(() => {
+    if (!window.Payline && !document.querySelector('script[src$="payline.com/cdn/scripts/widget-min.js"]'))
+      throw new Error(
+        "window.Payline is unavailable. Check if PaylineProvider is rendered within the component tree."
+      );
+  }, []);
+
+  return window.Payline;
 };
 
-export default usePayline;
+export const usePaylineApi = () => usePayline()?.Api;
+export const usePaylineJQuery = () => usePayline()?.jQuery;
