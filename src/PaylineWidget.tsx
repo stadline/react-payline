@@ -32,7 +32,7 @@ export type WillDisplayMessageHandler = (data: {
 export type WillRemoveMessageHandler = (data: { id: string }) => boolean | void;
 export type BeforePaymentHandler = () => boolean | void;
 
-type PropsType = {
+export interface PaylineWidgetProps extends React.HTMLAttributes<HTMLDivElement> {
   token: string;
   template?: string;
   embeddedRedirectionAllowed?: boolean;
@@ -45,9 +45,9 @@ type PropsType = {
   onWillDisplayMessage?: WillDisplayMessageHandler;
   onWillRemoveMessage?: WillRemoveMessageHandler;
   onBeforePayment?: BeforePaymentHandler;
-} & React.HTMLAttributes<HTMLDivElement>;
+};
 
-const PaylineWidget: React.ComponentType<PropsType> = ({
+export const PaylineWidget: React.ComponentType<PaylineWidgetProps> = ({
   token,
   template = 'column',
   embeddedRedirectionAllowed = false,
@@ -121,5 +121,3 @@ const PaylineWidget: React.ComponentType<PropsType> = ({
     />
   );
 };
-
-export default PaylineWidget;
