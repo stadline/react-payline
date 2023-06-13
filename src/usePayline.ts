@@ -31,7 +31,7 @@ type PaylineApi = {
 
 declare global {
   interface Window {
-    Payline?: { Api: PaylineApi };
+    Payline?: { Api: PaylineApi; jQuery: JQuery };
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import usePayline from './usePayline';
 
-type StateType =
+export type StateType =
   | 'ACTIVE_WAITING'
   | 'BROWSER_NOT_SUPPORTED'
   | 'MANAGE_WEB_WALLET'
