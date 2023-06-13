@@ -35,12 +35,13 @@ declare global {
   }
 }
 
-const usePayline = () => {
+export const usePayline = () => {
   if (typeof window === 'undefined') return undefined;
 
   if (!window.Payline)
     throw new Error('window.Payline is unavailable. Check if PaylineProvider is rendered within the component tree.');
-  return window.Payline.Api;
+  return window.Payline;
 };
 
-export default usePayline;
+export const usePaylineApi = () => usePayline()?.Api;
+export const usePaylineJQuery = () => usePayline()?.jQuery;

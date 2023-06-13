@@ -44,11 +44,11 @@ Integrates the [Payline API](https://docs.payline.com/display/DT/API+JavaScript)
 
 ```jsx
 import { useEffect } from 'react';
-import { usePayline } from 'react-payline';
+import { usePaylineApi } from 'react-payline';
 import Payment from './Payment';
 
 function PaymentWrapper(props) {
-  const paylineApi = usePayline();
+  const paylineApi = usePaylineApi();
   useEffect(() => {
     if (props.show) {
       paylineApi.show();

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import usePayline from './usePayline';
+import { usePaylineApi } from './usePayline';
 
 export type StateType =
   | 'ACTIVE_WAITING'
@@ -95,7 +95,7 @@ export const PaylineWidget: React.ComponentType<PaylineWidgetProps> = ({
     };
   }, []);
 
-  const payline = usePayline();
+  const payline = usePaylineApi();
   useEffect(() => {
     if (payline) {
       payline.reset();
