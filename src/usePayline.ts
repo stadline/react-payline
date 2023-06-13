@@ -37,7 +37,7 @@ declare global {
   }
 }
 
-export const usePayline = () => {
+const usePayline = () => {
   if (typeof window === 'undefined') return undefined;
 
   useEffect(() => {
