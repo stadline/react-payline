@@ -21,7 +21,7 @@ export type StateType =
 
 export type WillInitHandler = () => void;
 export type WillShowHandler = () => void;
-export type FinalStateHasBeenReachedHandler = (data: { state: StateType }) => false | void;
+export type FinalStateHasBeenReachedHandler = (data: { state: StateType }) => false | unknown;
 export type DidShowStateHandler = (data: { state: StateType }) => void;
 export type WillDisplayMessageHandler = (data: {
   id: string;
@@ -34,7 +34,7 @@ export type BeforePaymentHandler = () => boolean | void;
 
 export interface PaylineWidgetProps extends React.HTMLAttributes<HTMLDivElement> {
   token: string;
-  template?: string;
+  template?: 'tab' | 'column' | 'lightbox' | 'shortcut';
   embeddedRedirectionAllowed?: boolean;
   partnerReturnUrl?: string;
 
